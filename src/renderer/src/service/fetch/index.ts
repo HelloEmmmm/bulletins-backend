@@ -8,8 +8,11 @@ if (typeof window !== 'undefined') {
 }
 
 const authCode = [401, 403];
+
 const CancelToken = axios.CancelToken;
+
 export const cancelTokenMap: Record<'get', { [key: string]: Record<string, any> }> = { get: {} };
+
 const service = axios.create({
 	baseURL: 'http://39.105.204.185:8787',
 	timeout: 10000,
