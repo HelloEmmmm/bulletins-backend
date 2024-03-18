@@ -2,6 +2,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 let token = '';
 
+declare module 'axios' {
+	interface AxiosInstance {
+		(config: AxiosRequestConfig): Promise<any>;
+	}
+}
+
 if (typeof window !== 'undefined') {
 	// Perform localStorage action
 	token = localStorage.getItem('token') || '';
@@ -34,9 +40,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
 	(response) => {
 		const data = response.data;
-		const code = data.errcode | 0;
+		const code = data.code;
 		if (authCode.includes(code)) {
 			//todo
+			location.href = '/login';
 		} else {
 			//todo
 		}
@@ -109,16 +116,6 @@ const get = (url: string, params?: { [key: string]: any }, _cancelToken = false,
 		}
 	}
 	return service(_config);
-	// 低版本浏览器不支持promise的finally，加垫片(promise.prototype.finally)or放弃。
-	// .finally(() => {
-	//   if (_cancelToken) {
-	//     const _item = cancelTokenMap['get'][url]
-	//     if (_item && _item.count <= 1) {
-	//       delete cancelTokenMap['get'][url]
-	//     }
-	//     _item && _item.count--
-	//   }
-	// });
 };
 
 const post = (url: string, data = {}) => {

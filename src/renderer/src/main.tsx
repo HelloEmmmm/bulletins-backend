@@ -6,6 +6,8 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root';
 import Home from './routes/home';
 import Login from './routes/login';
+import Users from './routes/users';
+
 import { LoadingProvider } from './hooks/useLoading';
 
 const router = createHashRouter([
@@ -20,6 +22,10 @@ const router = createHashRouter([
 			{
 				path: 'login',
 				element: <Login />,
+			},
+			{
+				path: 'users',
+				element: <Users />,
 			},
 		],
 	},

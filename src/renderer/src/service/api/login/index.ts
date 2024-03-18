@@ -1,6 +1,6 @@
 import { post } from '../../fetch';
 import { CreateUserApiParams } from './interface';
 
-export const CreateUser = (data: CreateUserApiParams) => {
-	return post(`/register`, data);
+export const LoginApi = (data: CreateUserApiParams) => {
+	return post(`/adminLogin`, data);
 };
