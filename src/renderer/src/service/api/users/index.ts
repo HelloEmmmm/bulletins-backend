@@ -21,13 +21,20 @@ export const GetUsers = (): Promise<{ code: number; data: Array<User> }> => {
 	return get(`/getUserList`);
 };
 
-interface UpdateTrialReqData {
+export interface UpdateTrialReq {
 	user_id: number;
 	is_trial: 1 | 2;
 }
 
-export const UpdateTrial = (
-	data: UpdateTrialReqData
-): Promise<{ code: number; data: Array<User> }> => {
+export const UpdateTrial = (data: UpdateTrialReq): Promise<{ code: number; data: Array<User> }> => {
 	return post(`/updateUserType`, data);
+};
+
+export interface SendMessageReq {
+	group?: 1 | 2;
+	code: string;
+}
+
+export const SendMessage = (data: SendMessageReq): Promise<{ code: number; msg: string }> => {
+	return post(`/insertData`, data);
 };

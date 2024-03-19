@@ -14,15 +14,23 @@ const Root = (): ReactNode => {
 		window.electron.ipcRenderer.on('message', (_event, message) => {
 			console.log(message, 999);
 		});
+		const token = localStorage.getItem('token');
+		if (!token) {
+			_nav('login');
+		}
 	}, []);
 
 	return (
-		<>
+		<div className={'flex justify-between'}>
 			{show && <Loading />}
-			<Link to={'/home'}>home</Link> |<Link to={'/login'}>login</Link> |
-			<Link to={'/users'}>user</Link>
-			<Outlet />
-		</>
+			<div className={'flex text-white gap-4 flex-col w-[200px] py-[30px] px-[20px]'}>
+				<Link to={'/users'}>用户列表</Link>
+				<Link to={'/invite'}>邀请码列表</Link>
+			</div>
+			<div className={'flex-1'}>
+				<Outlet />
+			</div>
+		</div>
 	);
 };
 

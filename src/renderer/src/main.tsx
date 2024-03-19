@@ -7,6 +7,7 @@ import Root from './routes/root';
 import Home from './routes/home';
 import Login from './routes/login';
 import Users from './routes/users';
+import Invite from './routes/invite';
 
 import { LoadingProvider } from './hooks/useLoading';
 
@@ -26,6 +27,10 @@ const router = createHashRouter([
 			{
 				path: 'users',
 				element: <Users />,
+			},
+			{
+				path: 'invite',
+				element: <Invite />,
 			},
 		],
 	},

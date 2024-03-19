@@ -1,16 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-let token = '';
-
 declare module 'axios' {
 	interface AxiosInstance {
 		(config: AxiosRequestConfig): Promise<any>;
 	}
-}
-
-if (typeof window !== 'undefined') {
-	// Perform localStorage action
-	token = localStorage.getItem('token') || '';
 }
 
 const authCode = [401, 403];
@@ -23,7 +16,8 @@ const service = axios.create({
 	baseURL: 'http://39.105.204.185:8787',
 	timeout: 10000,
 	headers: {
-		Authorization: token ? `Bearer ${token}` : '',
+		Authorization:
+			localStorage.getItem('token') || '' ? `Bearer ${localStorage.getItem('token') || ''}` : '',
 	},
 });
 
@@ -42,8 +36,8 @@ service.interceptors.response.use(
 		const data = response.data;
 		const code = data.code;
 		if (authCode.includes(code)) {
+			window.location.href = '#/login';
 			//todo
-			location.href = '/login';
 		} else {
 			//todo
 		}
