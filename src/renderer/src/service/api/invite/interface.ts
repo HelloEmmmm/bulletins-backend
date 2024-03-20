@@ -14,3 +14,9 @@ export interface GetAllInviteCodesRes {
 		} | null;
 	}[];
 }
+
+export interface GenerateInviteCodeRes {
+	code: number;
+	data: string[];
+	msg: string;
+}

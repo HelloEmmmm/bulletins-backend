@@ -16,14 +16,17 @@ const service = axios.create({
 	baseURL: 'http://39.105.204.185:8787',
 	timeout: 10000,
 	headers: {
-		Authorization:
-			localStorage.getItem('token') || '' ? `Bearer ${localStorage.getItem('token') || ''}` : '',
+		Authorization: localStorage.getItem('token')
+			? `Bearer ${localStorage.getItem('token')}`
+			: undefined,
 	},
 });
 
 service.interceptors.request.use(
 	(config) => {
-		// todo
+		config.headers.Authorization = localStorage.getItem('token')
+			? `Bearer ${localStorage.getItem('token')}`
+			: undefined;
 		return config;
 	},
 	(error) => {

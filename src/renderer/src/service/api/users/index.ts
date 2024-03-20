@@ -38,3 +38,12 @@ export interface SendMessageReq {
 export const SendMessage = (data: SendMessageReq): Promise<{ code: number; msg: string }> => {
 	return post(`/insertData`, data);
 };
+
+export interface AddTimeReq {
+	user_id: number;
+	hour: number;
+}
+
+export const AddTime = (data: AddTimeReq): Promise<{ code: number; msg: string }> => {
+	return post(`/addUserExpiration`, data);
+};

@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
-import { GetUsers, UpdateTrial, User } from '../service/api/users';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import { GetUsers, UpdateTrial, User } from '../../service/api/users';
 import day from 'dayjs';
-import SendMessageModal from '../components/SendMessageModal';
+import SendMessageModal from '../../components/SendMessageModal';
 import { toast, ToastContainer } from 'react-toastify';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import AddTimeModal from '../../components/AddTimeModal';
 
 const StatusArr = ['审核中', '审核成功', '审核驳回'];
 
 const Users = () => {
 	const [list, setList] = useState<Array<User>>([]);
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [showAddTimeModal, setShowAddTimeModal] = useState<boolean>(false);
+	const [userId, setUserId] = useState<undefined | number>(undefined);
 
 	const memorizedHandleGetUsers = useCallback(() => {
 		GetUsers().then((res) => {
@@ -26,6 +31,16 @@ const Users = () => {
 		});
 	}, []);
 
+	const memorizedHandleOpenAddTimeModal = useCallback((bool: boolean, id?: number) => {
+		if (bool) {
+			setShowAddTimeModal(true);
+			setUserId(id);
+		} else {
+			setShowAddTimeModal(false);
+			setUserId(undefined);
+		}
+	}, []);
+
 	useEffect(() => {
 		memorizedHandleGetUsers();
 	}, []);
@@ -40,7 +55,7 @@ const Users = () => {
 					群发
 				</button>
 			</div>
-			<div className='relative overflow-x-auto'>
+			<div className='relative'>
 				<table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
 					<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
 						<tr>
@@ -70,6 +85,9 @@ const Users = () => {
 							</th>
 							<th scope='col' className='px-6 py-3'>
 								是否到期
+							</th>
+							<th scope='col' className='px-6 py-3'>
+								Action
 							</th>
 						</tr>
 					</thead>
@@ -104,12 +122,67 @@ const Users = () => {
 										</label>
 									</td>
 									<td className='px-6 py-4'>
-										{day(item.expiration_date * 1000).format('YYYY-MM-DD')}
+										{day(item.expiration_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
 									</td>
 									<td className='px-6 py-4'>{item.last_login_at}</td>
 									<td className='px-6 py-4'>{item.type === 1 ? '是' : '否'}</td>
 									<td className='px-6 py-4'>{StatusArr[item.status - 1]}</td>
 									<td className='px-6 py-4'>{item.date_type === 1 ? '是' : '否'}</td>
+									<td className='px-6 py-4'>
+										<Menu as='div' className='z-1 relative inline-block text-left'>
+											<div>
+												<Menu.Button className='inline-flex w-full justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75'>
+													操作
+													<ChevronDownIcon
+														className='-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100'
+														aria-hidden='true'
+													/>
+												</Menu.Button>
+											</div>
+											<Transition
+												as={Fragment}
+												enter='transition ease-out duration-100'
+												enterFrom='transform opacity-0 scale-95'
+												enterTo='transform opacity-100 scale-100'
+												leave='transition ease-in duration-75'
+												leaveFrom='transform opacity-100 scale-100'
+												leaveTo='transform opacity-0 scale-95'
+											>
+												<Menu.Items className='z-10 absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none'>
+													<div className='px-1 py-1 '>
+														<Menu.Item>
+															{({ active }) => (
+																<button
+																	onClick={() => {
+																		memorizedHandleOpenAddTimeModal(true, item.id);
+																	}}
+																	className={`${
+																		active ? 'bg-blue-500 text-white' : 'text-gray-900'
+																	} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+																>
+																	增加试用时间
+																</button>
+															)}
+														</Menu.Item>
+														<Menu.Item>
+															{({ active }) => (
+																<button
+																	onClick={() => {
+																		memorizedHandleOpenAddTimeModal(true, item.id);
+																	}}
+																	className={`${
+																		active ? 'bg-blue-500 text-white' : 'text-gray-900'
+																	} group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+																>
+																	查看加时记录
+																</button>
+															)}
+														</Menu.Item>
+													</div>
+												</Menu.Items>
+											</Transition>
+										</Menu>
+									</td>
 								</tr>
 							);
 						})}
@@ -123,6 +196,17 @@ const Users = () => {
 						setShowModal(false);
 					}}
 					onClose={() => setShowModal(false)}
+				/>
+			)}
+			{showAddTimeModal && (
+				<AddTimeModal
+					onOk={(msg) => {
+						memorizedHandleGetUsers();
+						toast.success(msg);
+						memorizedHandleOpenAddTimeModal(false);
+					}}
+					userId={userId}
+					onClose={() => memorizedHandleOpenAddTimeModal(false)}
 				/>
 			)}
 			<ToastContainer />
