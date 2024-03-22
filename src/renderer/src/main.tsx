@@ -8,7 +8,9 @@ import Home from './routes/home';
 import Login from './routes/login';
 import Users from './routes/home/users';
 import Invite from './routes/home/invite';
-import General from './routes/general';
+import Index from './routes/general';
+import Config from './routes/general/config';
+import Message from './routes/general/message';
 
 import { LoadingProvider } from './hooks/useLoading';
 
@@ -31,7 +33,17 @@ const router = createHashRouter([
 					},
 					{
 						path: 'general',
-						element: <General />,
+						element: <Index />,
+						children: [
+							{
+								path: 'config',
+								element: <Config />,
+							},
+							{
+								path: 'message',
+								element: <Message />,
+							},
+						],
 					},
 				],
 			},
