@@ -6,7 +6,6 @@ export interface CheckInviteCodeInfoModalProps {
 }
 
 const CheckInviteCodeInfoModal = (props: CheckInviteCodeInfoModalProps) => {
-	console.log(props);
 	return (
 		<div className='bg-[rgba(0,0,0,.6)] overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'>
 			<div className={'w-[440px] bg-white rounded-[10px]'}>
