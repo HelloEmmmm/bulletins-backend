@@ -51,11 +51,13 @@ const Config = () => {
 					手机号
 				</label>
 				<input
+					type='text'
 					readOnly={readOnly}
-					className='border border-gray-300 text-gray-900 w-[240px] text-sm rounded-lg'
 					placeholder='139xxxxxxxx'
 					value={phone}
 					onChange={(event) => setPhone(event.target.value)}
+					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+					required
 				/>
 			</div>
 			<div className='mb-6'>
@@ -66,7 +68,7 @@ const Config = () => {
 					readOnly={readOnly}
 					value={wechat}
 					onChange={(event) => setWechat(event.target.value)}
-					className='border border-gray-300 text-gray-900 w-[240px] text-sm rounded-lg'
+					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					placeholder='139xxxxxxxx'
 				/>
 			</div>
@@ -77,7 +79,7 @@ const Config = () => {
 				<input
 					readOnly={readOnly}
 					value={qq}
-					className='border border-gray-300 text-gray-900 w-[240px] text-sm rounded-lg'
+					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					onChange={(event) => setQQ(event.target.value)}
 					placeholder='1649xxxxxxx'
 				/>
@@ -91,7 +93,7 @@ const Config = () => {
 					rows={2}
 					value={remarks}
 					onChange={(event) => setRemarks(event.target.value)}
-					className='border border-gray-300 text-gray-900 w-[240px] text-sm rounded-lg'
+					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					placeholder='xxxx'
 				/>
 			</div>
