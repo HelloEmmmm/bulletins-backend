@@ -12,10 +12,10 @@ const Config = () => {
 	useEffect(() => {
 		GetConfigInfo()
 			.then((config) => {
-				setPhone(config.phone);
-				setWechat(config.wechat);
-				setQQ(config.qq);
-				setRemarks(config.remarks);
+				setPhone(config.data.phone);
+				setWechat(config.data.wechat);
+				setQQ(config.data.qq);
+				setRemarks(config.data.remarks);
 			})
 			.catch((res) => {
 				toast.warn(res?.msg || '获取配置信息失败，请联系管理员');
@@ -52,8 +52,8 @@ const Config = () => {
 				</label>
 				<input
 					type='text'
-					readOnly={readOnly}
-					placeholder='139xxxxxxxx'
+					disabled={readOnly}
+					placeholder='输入手机号'
 					value={phone}
 					onChange={(event) => setPhone(event.target.value)}
 					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
@@ -65,11 +65,11 @@ const Config = () => {
 					微信号
 				</label>
 				<input
-					readOnly={readOnly}
+					disabled={readOnly}
 					value={wechat}
 					onChange={(event) => setWechat(event.target.value)}
 					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-					placeholder='139xxxxxxxx'
+					placeholder='输入微信号'
 				/>
 			</div>
 			<div className='mb-6'>
@@ -77,11 +77,11 @@ const Config = () => {
 					QQ号
 				</label>
 				<input
-					readOnly={readOnly}
+					disabled={readOnly}
 					value={qq}
 					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					onChange={(event) => setQQ(event.target.value)}
-					placeholder='1649xxxxxxx'
+					placeholder='输入QQ号'
 				/>
 			</div>
 			<div className='mb-6'>
@@ -89,12 +89,12 @@ const Config = () => {
 					备注
 				</label>
 				<textarea
-					readOnly={readOnly}
+					disabled={readOnly}
 					rows={2}
 					value={remarks}
 					onChange={(event) => setRemarks(event.target.value)}
 					className='w-[300px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-					placeholder='xxxx'
+					placeholder='输入备注'
 				/>
 			</div>
 			<div className='mb-6'>

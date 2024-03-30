@@ -9,7 +9,7 @@ const Home = (): ReactNode => {
 	const { show } = useLoading();
 
 	useEffect(() => {
-		nav('users');
+		nav('/home/users');
 	}, []);
 
 	return (

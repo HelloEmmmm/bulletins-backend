@@ -1,11 +1,12 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { GetUsers, UpdateTrial, User } from '../../service/api/users';
 import day from 'dayjs';
-import SendMessageModal from '../../components/SendMessageModal';
+import SendMessageModal from '../../components/home/SendMessageModal';
 import { toast, ToastContainer } from 'react-toastify';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import AddTimeModal from '../../components/AddTimeModal';
+import CheckHistoryModal from '../../components/home/CheckHistoryModal';
 
 const StatusArr = ['审核中', '审核成功', '审核驳回'];
 
@@ -13,6 +14,7 @@ const Users = () => {
 	const [list, setList] = useState<Array<User>>([]);
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [showAddTimeModal, setShowAddTimeModal] = useState<boolean>(false);
+	const [checkHistoryModal, setCheckHistoryModal] = useState<boolean>(false);
 	const [userId, setUserId] = useState<undefined | number>(undefined);
 
 	const memorizedHandleGetUsers = useCallback(() => {
@@ -168,7 +170,8 @@ const Users = () => {
 															{({ active }) => (
 																<button
 																	onClick={() => {
-																		memorizedHandleOpenAddTimeModal(true, item.id);
+																		setCheckHistoryModal(true);
+																		setUserId(item.id);
 																	}}
 																	className={`${
 																		active ? 'bg-blue-500 text-white' : 'text-gray-900'
@@ -208,6 +211,9 @@ const Users = () => {
 					userId={userId}
 					onClose={() => memorizedHandleOpenAddTimeModal(false)}
 				/>
+			)}
+			{checkHistoryModal && (
+				<CheckHistoryModal id={userId} onClose={() => setCheckHistoryModal(false)} />
 			)}
 			<ToastContainer />
 		</div>

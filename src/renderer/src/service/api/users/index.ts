@@ -47,3 +47,27 @@ export interface AddTimeReq {
 export const AddTime = (data: AddTimeReq): Promise<{ code: number; msg: string }> => {
 	return post(`/addUserExpiration`, data);
 };
+
+export interface CheckOperationHistoryParams {
+	user_id: number;
+	start_date?: string;
+	end_date?: string;
+}
+
+export interface OperationHistoryResponse {
+	code: number;
+	data: {
+		created_at: string;
+		expiration_date: string;
+		hour: number;
+		id: number;
+		user_id: number;
+		username: string;
+	}[];
+}
+
+export const CheckOperationHistory = (
+	params: CheckOperationHistoryParams
+): Promise<OperationHistoryResponse> => {
+	return get('/getUserExpirationList', params);
+};

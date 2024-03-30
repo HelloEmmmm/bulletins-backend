@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UpdateNoticesType } from '../../service/api/general';
+import { UpdateNoticesType } from '../../../service/api/general';
 
 export interface ModalProps {
 	onClose: () => void;

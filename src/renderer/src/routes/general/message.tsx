@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { NoticeItem } from '../../service/api/general/interface';
 import { GetMessageList } from '../../service/api/general';
-import ModifyNoticeModal from '../../components/ModifyNoticeModal';
-import AddNoticeModal from '../../components/AddNoticeModal';
+import ModifyNoticeModal from '../../components/home/ModifyNoticeModal';
+import AddNoticeModal from '../../components/general/AddNoticeModal';
 
 const Message = () => {
 	const [list, setList] = useState<NoticeItem[]>([]);
@@ -65,7 +65,7 @@ const Message = () => {
 								>
 									<td
 										scope='row'
-										className='px-6 py-4 font-medium text-gray-900 w-[200px] overflow-ellipsis whitespace-nowrap dark:text-white'
+										className='px-6 py-4 font-medium text-gray-900 whitespace-pre-wrap dark:text-white'
 									>
 										{item.message}
 									</td>

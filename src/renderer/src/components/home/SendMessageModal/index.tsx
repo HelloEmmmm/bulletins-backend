@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SendMessage } from '../../service/api/users';
+import { SendMessage } from '../../../service/api/users';
 
 export interface ModalProps {
 	onClose: () => void;
