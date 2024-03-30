@@ -5,12 +5,13 @@ import {
 	UpdateNoticesTypeBody,
 	AddNoticesTypeBody,
 	GetNoticesListRes,
+	ConfigInfoResponse,
 } from './interface';
 
 /**
  * 获取后台配置信息
  */
-export const GetConfigInfo = (): Promise<ConfigInfo> => {
+export const GetConfigInfo = (): Promise<ConfigInfoResponse> => {
 	return get(`/getSetting`);
 };
 

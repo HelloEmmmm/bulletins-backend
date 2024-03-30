@@ -1,8 +1,8 @@
 import { post } from '../../fetch';
 
 export interface LoginParams {
-	username: string; // 6-20
-	password: string; // 6-18 不包含特殊字符
+	username: string;
+	password: string;
 }
 
 export const LoginApi = (data: LoginParams) => {

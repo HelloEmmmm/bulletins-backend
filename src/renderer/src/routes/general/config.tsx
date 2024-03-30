@@ -4,10 +4,10 @@ import { GetConfigInfo, SaveConfigInfo } from '../../service/api/general';
 
 const Config = () => {
 	const [readOnly, setReadOnly] = useState(true);
-	const [phone, setPhone] = useState<string | undefined>(undefined);
-	const [wechat, setWechat] = useState<string | undefined>(undefined);
-	const [qq, setQQ] = useState<string | undefined>(undefined);
-	const [remarks, setRemarks] = useState<string | undefined>(undefined);
+	const [phone, setPhone] = useState<string>('');
+	const [wechat, setWechat] = useState<string>('');
+	const [qq, setQQ] = useState<string>('');
+	const [remarks, setRemarks] = useState<string>('');
 
 	useEffect(() => {
 		GetConfigInfo()
@@ -15,7 +15,7 @@ const Config = () => {
 				setPhone(config.data.phone);
 				setWechat(config.data.wechat);
 				setQQ(config.data.qq);
-				setRemarks(config.data.remarks);
+				setRemarks(config.data.remarks || '');
 			})
 			.catch((res) => {
 				toast.warn(res?.msg || '获取配置信息失败，请联系管理员');

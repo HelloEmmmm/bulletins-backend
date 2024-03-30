@@ -1,11 +1,13 @@
 export interface ConfigInfo {
+	phone: string;
+	wechat: string;
+	qq: string;
+	remarks: string;
+}
+
+export interface ConfigInfoResponse {
 	code: number;
-	data: {
-		phone: string;
-		wechat: string;
-		qq: string;
-		remarks?: string;
-	};
+	data: ConfigInfo;
 }
 
 export interface GetNoticesListBody {

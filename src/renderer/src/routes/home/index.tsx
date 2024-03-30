@@ -1,24 +1,31 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { useLoading } from '../../hooks/useLoading';
 import Loading from '../../components/Loading';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { routeTree } from '../config';
 
 const Home = (): ReactNode => {
-	const nav = useNavigate();
+	const location = useLocation();
 
 	const { show } = useLoading();
-
-	useEffect(() => {
-		nav('/home/users');
-	}, []);
 
 	return (
 		<div className={'flex justify-between'}>
 			{show && <Loading />}
 			<div className={'flex text-white gap-4 flex-col w-[200px] py-[30px] px-[20px]'}>
-				<Link to={'users'}>用户列表</Link>
-				<Link to={'invite'}>邀请码列表</Link>
-				<Link to={'general'}>通用设置</Link>
+				{routeTree.children
+					.find((item) => item.path === 'home')
+					?.children?.map((item) => {
+						return (
+							<Link
+								className={`${location.pathname.includes(item.path) && 'bg-blue-500'} p-2 text-center rounded-[4px]`}
+								key={item.path}
+								to={item.path}
+							>
+								{item.label}
+							</Link>
+						);
+					})}
 			</div>
 			<div className={'flex-1 h-[100vh]'}>
 				<Outlet />

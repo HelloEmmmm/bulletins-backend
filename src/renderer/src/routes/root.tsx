@@ -14,7 +14,7 @@ const Root = (): ReactNode => {
 		if (!token) {
 			_nav('login');
 		} else {
-			_nav('home');
+			_nav('home/users');
 		}
 	}, []);
 
