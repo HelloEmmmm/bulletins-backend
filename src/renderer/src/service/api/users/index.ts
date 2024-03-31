@@ -58,7 +58,8 @@ export interface OperationHistoryResponse {
 	code: number;
 	data: {
 		created_at: string;
-		expiration_date: string;
+		before_date: string;
+		later_date: string;
 		hour: number;
 		id: number;
 		user_id: number;

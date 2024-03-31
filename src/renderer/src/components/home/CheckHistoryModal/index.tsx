@@ -85,7 +85,10 @@ const CheckHistoryModal = (props: ModalProps) => {
 														操作时间
 													</th>
 													<th scope='col' className='px-6 py-4'>
-														到期时间
+														增加前
+													</th>
+													<th scope='col' className='px-6 py-4'>
+														增加后
 													</th>
 													<th scope='col' className='px-6 py-4'>
 														增加小时
@@ -101,7 +104,10 @@ const CheckHistoryModal = (props: ModalProps) => {
 														>
 															<td className='whitespace-nowrap px-6 py-4'>{item.created_at}</td>
 															<td className='whitespace-nowrap px-6 py-4'>
-																{dayjs(+item.expiration_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
+																{dayjs(+item.before_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
+															</td>
+															<td className='whitespace-nowrap px-6 py-4'>
+																{dayjs(+item.later_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
 															</td>
 															<td className='whitespace-nowrap px-6 py-4'>{item.hour}</td>
 														</tr>
