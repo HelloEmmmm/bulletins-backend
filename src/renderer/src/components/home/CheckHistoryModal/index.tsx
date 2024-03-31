@@ -17,7 +17,7 @@ const CheckHistoryModal = (props: ModalProps) => {
 
 	const [startDate, endDate] = dateRange;
 
-	const memorizedHandleHistoryChange = useCallback((arr) => {
+	const memorizedHandleHistoryChange = useCallback((arr: OperationHistoryResponse['data']) => {
 		setHistory(arr);
 	}, []);
 
@@ -103,12 +103,8 @@ const CheckHistoryModal = (props: ModalProps) => {
 															className='border-b border-neutral-200 dark:border-white/10'
 														>
 															<td className='whitespace-nowrap px-6 py-4'>{item.created_at}</td>
-															<td className='whitespace-nowrap px-6 py-4'>
-																{dayjs(+item.before_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
-															</td>
-															<td className='whitespace-nowrap px-6 py-4'>
-																{dayjs(+item.later_date * 1000).format('YYYY-MM-DD hh:mm:ss')}
-															</td>
+															<td className='whitespace-nowrap px-6 py-4'>{item.before_date}</td>
+															<td className='whitespace-nowrap px-6 py-4'>{item.later_date}</td>
 															<td className='whitespace-nowrap px-6 py-4'>{item.hour}</td>
 														</tr>
 													);
