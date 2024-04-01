@@ -1,11 +1,17 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useLoading } from '../../hooks/useLoading';
 import Loading from '../../components/Loading';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { routeTree } from '../config';
+import Header from '../../components/Header';
 
 const Home = (): ReactNode => {
 	const location = useLocation();
+	const nav = useNavigate();
+
+	useEffect(() => {
+		nav('users');
+	}, []);
 
 	const { show } = useLoading();
 
@@ -28,6 +34,7 @@ const Home = (): ReactNode => {
 					})}
 			</div>
 			<div className={'flex-1 h-[100vh]'}>
+				<Header />
 				<Outlet />
 			</div>
 		</div>
