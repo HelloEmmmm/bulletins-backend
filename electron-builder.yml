@@ -13,6 +13,8 @@ asarUnpack:
   - resources/**
 win:
   executableName: bulletins-backend
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
