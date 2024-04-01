@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.bulletins-backend.app
 productName: bulletins-backend
 directories:
   buildResources: build
