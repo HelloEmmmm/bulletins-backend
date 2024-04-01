@@ -5,6 +5,7 @@ import { GenerateInviteCode, GetAllInviteCodes } from '../../service/api/invite'
 import { GetAllInviteCodesRes } from '../../service/api/invite/interface';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { copyTextToClipboard } from '../../utils/copyTextToClipboard';
 
 const Invite = () => {
 	const [list, setList] = useState<GetAllInviteCodesRes['data']>([]);
@@ -116,8 +117,11 @@ const Invite = () => {
 									className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'
 								>
 									<th
+										onClick={() => {
+											copyTextToClipboard(item.code);
+										}}
 										scope='row'
-										className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+										className='cursor-pointer px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
 									>
 										{item.code}
 									</th>

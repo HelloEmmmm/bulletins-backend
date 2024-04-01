@@ -36,6 +36,7 @@ const Login = (): ReactNode => {
 						onChange={memorizedHandleAccountChange}
 					/>
 					<LoginInput
+						type={'password'}
 						label={'密码'}
 						maxLength={16}
 						value={password}

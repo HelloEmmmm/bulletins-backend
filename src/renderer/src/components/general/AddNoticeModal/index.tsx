@@ -7,7 +7,7 @@ export interface ModalProps {
 }
 
 const AddNoticeModal = (props: ModalProps) => {
-	const [group, setGroup] = useState<1 | 2 | 3>(1);
+	const [group, setGroup] = useState<1 | 2 | 3>(3);
 	const [message, setMessage] = useState<string>('');
 
 	return (
@@ -23,9 +23,9 @@ const AddNoticeModal = (props: ModalProps) => {
 						onChange={(e) => setGroup(e.target.value as unknown as 1 | 2 | 3)}
 						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 					>
+						<option value={3}>全部</option>
 						<option value={1}>试用</option>
 						<option value={2}>正式</option>
-						<option value={3}>全部</option>
 					</select>
 				</div>
 				<div className={'flex justify-between text-slate-900 px-[20px] py-[14px] border-b-[1px]'}>
