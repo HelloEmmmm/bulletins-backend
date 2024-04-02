@@ -29,7 +29,6 @@ const SendMessageModal = (props: ModalProps) => {
 					<div className={'flex gap-2'}>
 						<div className='flex items-center'>
 							<input
-								checked
 								id={'default-radio-0'}
 								onChange={handleRadioChange}
 								type='radio'
