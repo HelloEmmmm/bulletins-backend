@@ -8,8 +8,6 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import AddTimeModal from '../../components/AddTimeModal';
 import CheckHistoryModal from '../../components/home/CheckHistoryModal';
 
-const StatusArr = ['审核中', '审核成功', '审核驳回'];
-
 const Users = () => {
 	const [list, setList] = useState<Array<User>>([]);
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -83,9 +81,6 @@ const Users = () => {
 								禁用
 							</th>
 							<th scope='col' className='px-6 py-3'>
-								审核状态
-							</th>
-							<th scope='col' className='px-6 py-3'>
 								是否到期
 							</th>
 							<th scope='col' className='px-6 py-3'>
@@ -128,7 +123,6 @@ const Users = () => {
 									</td>
 									<td className='px-6 py-4'>{item.last_login_at}</td>
 									<td className='px-6 py-4'>{item.type === 1 ? '是' : '否'}</td>
-									<td className='px-6 py-4'>{StatusArr[item.status - 1]}</td>
 									<td className='px-6 py-4'>{item.date_type === 1 ? '是' : '否'}</td>
 									<td className='px-6 py-4'>
 										<Menu as='div' className='z-1 relative inline-block text-left'>

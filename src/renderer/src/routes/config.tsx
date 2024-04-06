@@ -1,7 +1,6 @@
 import Root from './root';
 import Home from './home';
 import Users from './home/users';
-import Invite from './home/invite';
 import Index from './general';
 import Config from './general/config';
 import Message from './general/message';
@@ -20,11 +19,11 @@ export const routeTree = {
 					element: <Users />,
 					label: '用户列表',
 				},
-				{
-					path: 'invite',
-					element: <Invite />,
-					label: '邀请码列表',
-				},
+				// {
+				// 	path: 'invite',
+				// 	element: <Invite />,
+				// 	label: '邀请码列表',
+				// },
 				{
 					path: 'general',
 					element: <Index />,
